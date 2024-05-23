@@ -40,6 +40,7 @@ function shuffleArray(array) {
     const j = Math.floor(Math.random() * (i + 1));
     [array[i], array[j]] = [array[j], array[i]];
 }
+}
 
 function shuffle() {
   let array = memoryPictureUrls
@@ -50,27 +51,33 @@ function shuffle() {
 }
 shuffle()
 
-for (let index = 0; index < flipCard.length; index++){
+for (let index = 0; index < flipCard.length; index++) {
   flipCard[index].addEventListener("click", (data) => {
+
     if (firstClick === "") {
       firstClick = data.target;
       data.target.classList.add("active");
-      } else (firstClick !== data.target) {
-        console.log(firstClick.children[0].scr)
-        console.log(data.target.children[0].scr)
+    } else {
+      console.log(firstClick.children[0].scr)
+      console.log(data.target.children[0].scr)
 
-        if (firstClick.children[0].scr === data.target.children[0].scr) {
-          firstClick ="";
-          data.target.classList.add("active");
-          matches +=1;
-          score += 1;
-         if(matches == 6){
+      if (firstClick.children[0].scr === data.target.children[0].scr) {
+        firstClick = "";
+        data.target.classList.add("active");
+        matches += 1;
+        score += 1;
+        if (matches === 6) {
           confetti.start()
-        } else{
+        } else {
           firstClick.classList.remove("active");
-          firstClick ="";
+          firstClick = "";
           score -= 1;
         }
+      } else {
+        firstClick.classList.remove("active");
+        firstClick = "";
+        score -= 1;
+      }
     }
     scoreElement.innerText = score;
   });
