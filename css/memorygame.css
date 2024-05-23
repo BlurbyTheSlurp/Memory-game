@@ -79,6 +79,10 @@ button {
   transition: all 0.75s ease-out;
 }
 
+.card.flip{
+  transform: rotateY('180deg');
+}
+
 .card.active::after {
   opacity: 0;
 }
